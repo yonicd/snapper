@@ -7,17 +7,25 @@ snap images of html objects in Shiny apps using canvas2html JQuery library
 remotes::install_github('yonicd/snapper')
 ```
 
+## Where it can be useful
+
+  - seleniumless shiny app testing
+    - Take a snap of any element in the page using `jQuery` strings
+  - offline script image sharing (a la carbon)
+    - Implemented in  [carbonace](https://github.com/yonicd/carbonace)
+
 ## How to use
 
-  - Load to bindings to the UI `snapper::load_snapper()`
-  - Preview Button: `snapper::preview_button(contentId = 'ace',previewId = "previewImage")`
-  - Div that is connected to Preview Button: `snapper::snapper_div(id = "previewImage")`
-  - Download Button: `snapper::download_button(contentId = 'ace')`
+  - Load to bindings to the UI using 
+    - `snapper::load_snapper()`
+  - Add a Preview Button to the UI 
+    - e.g.: `snapper::preview_button(ui = '#ace',previewId = "previewImage")`
+  - Add a Div that is connected to Preview Button
+    - e.g.: `snapper::snapper_div(id = "previewImage")`
+  - Add a Download Button to download directly to a local path
+    - e.g.: `snapper::download_button(ui = '#ace')`
 
-
-## Examples
-
-### ShinyAce
+## Verbose Example
 
 Add preview and download buttons to create `shinyAce` images to share online.
 
@@ -85,6 +93,8 @@ shinyApp(ui = ui, server = server)
 ```
 
 ### App
+
+> Setting ui = 'body' you can take snaps of the app
 
 Default: 
 
