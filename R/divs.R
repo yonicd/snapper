@@ -1,17 +1,12 @@
-#' @title FUNCTION_TITLE
-#' @description FUNCTION_DESCRIPTION
-#' @param id PARAM_DESCRIPTION, Default: 'previewImage'
-#' @param ... PARAM_DESCRIPTION
-#' @return OUTPUT_DESCRIPTION
-#' @details DETAILS
-#' @examples
-#' \dontrun{
-#' if(interactive()){
-#'  #EXAMPLE1
-#'  }
-#' }
+#' @title Preview Canvas
+#' @description div object to capture
+#' [preview_button][snapper::preview_button] outputs.
+#' @param id character, id of the object, Default: 'previewImage'
+#' @param ... elements to pass to div
+#' @return shiny.tag
+#' @inherit preview_button examples
 #' @seealso
-#'  \code{\link[shiny]{builder}}
+#'  [builder][shiny::builder]
 #' @rdname snapper_div
 #' @export
 #' @importFrom shiny tags

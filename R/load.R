@@ -1,22 +1,18 @@
-#' @title FUNCTION_TITLE
-#' @description FUNCTION_DESCRIPTION
-
-#' @return OUTPUT_DESCRIPTION
-#' @details DETAILS
-#' @examples
-#' \dontrun{
-#' if(interactive()){
-#'  #EXAMPLE1
-#'  }
-#' }
+#' @title Load snapper JS libraries in ShinyApp
+#' @description Load html2canvas jquery library and download script
+#'  in Shiny App environment.
+#' @param html2canvas character, url path to html2canvas library.
+#' Default: 'https://html2canvas.hertzen.com/dist/html2canvas.js'
+#' @return shiny.tag.list
+#' @inherit preview_button examples
 #' @seealso
-#'  \code{\link[shiny]{tag}}, \code{\link[shiny]{builder}}
+#'  [tag][shiny::tag], [builder][shiny::builder]
 #' @rdname load_snapper
 #' @export
 #' @importFrom shiny tagList tags
-load_snapper <- function(){
+load_snapper <- function(html2canvas = 'https://html2canvas.hertzen.com/dist/html2canvas.js'){
   shiny::tagList(
-    shiny::tags$script(src='https://html2canvas.hertzen.com/dist/html2canvas.js'),
+    shiny::tags$script(src = html2canvas),
     shiny::tags$script('
       var saveAs = function(uri, filename) {
             var link = document.createElement("a");

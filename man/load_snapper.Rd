@@ -2,26 +2,85 @@
 % Please edit documentation in R/load.R
 \name{load_snapper}
 \alias{load_snapper}
-\title{FUNCTION_TITLE}
+\title{Load snapper JS libraries in ShinyApp}
 \usage{
-load_snapper()
+load_snapper(
+  html2canvas = "https://html2canvas.hertzen.com/dist/html2canvas.js"
+)
+}
+\arguments{
+\item{html2canvas}{character, url path to html2canvas library.
+Default: 'https://html2canvas.hertzen.com/dist/html2canvas.js'}
 }
 \value{
-OUTPUT_DESCRIPTION
+shiny.tag.list
 }
 \description{
-FUNCTION_DESCRIPTION
-}
-\details{
-DETAILS
+Load html2canvas jquery library and download script
+in Shiny App environment.
 }
 \examples{
-\dontrun{
+
 if(interactive()){
- #EXAMPLE1
- }
+options(device.ask.default = FALSE)
+ui <- fluidPage(id = 'page',
+
+# load snapper into the app
+load_snapper(),
+
+titlePanel("Hello Shiny!"),
+
+sidebarLayout(
+
+ sidebarPanel(id = 'side', # add id to side panel
+   sliderInput("obs",
+               "Number of observations:",
+               min = 0,
+               max = 1000,
+               value = 500),
+
+   # add a download button for the side panel by id
+   snapper::download_button(contentId = 'side',
+   label = 'Download Side Panel',
+   filename = 'side_panel.png'),
+
+   # add a preview button for the side panel by id
+   snapper::preview_button(contentId = 'side',
+   previewId = 'preview_side',
+   label = 'Preview Side Panel'),
+
+   # add a preview button for the main panel by id
+   snapper::preview_button(contentId = 'main',
+   previewId = 'preview_main',
+   label = 'Preview Main Panel')
+ ),
+
+ # Show a plot of the generated distribution
+ mainPanel(id = 'main', # add id to main panel
+   plotOutput("distPlot"),
+
+   # create a div that will display the content created by preview_side
+   shiny::tags$h3('Preview Side Panel'),
+   snapper::snapper_div(id = 'preview_side'),
+
+   # create a div that will display the content created by preview_main
+   shiny::tags$h3('Preview Main Panel'),
+   snapper::snapper_div(id = 'preview_main')
+ )
+  )
+)
+
+server <- function(input, output) {
+  output$distPlot <- renderPlot({
+    hist(rnorm(input$obs))
+  })
+}
+
+# Complete app with UI and server components
+shinyApp(ui, server)
+
 }
 }
 \seealso{
-\code{\link[shiny]{tag}}, \code{\link[shiny]{builder}}
+\link[shiny:tag]{tag}, \link[shiny:builder]{builder}
 }
