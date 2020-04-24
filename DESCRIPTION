@@ -1,13 +1,13 @@
 Package: snapper
 Title: Capture Images of Shiny Applications
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: person(given = "Jonathan", family = "Sidi", role =
        c("aut", "cre"), email = "yonicd@gmail.com", comment
        = c(ORCID = "0000-0002-4222-1819"))
 Description: Capture images of Shiny applications using canvas2html.
 License: MIT + file LICENSE
 Depends: R (>= 3.5.0)
-Imports: shiny
+Imports: shiny, jsonlite
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

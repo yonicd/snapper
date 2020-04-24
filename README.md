@@ -19,15 +19,17 @@ remotes::install_github('yonicd/snapper')
   - Load to bindings to the UI using 
     - `snapper::load_snapper()`
   - Add a Preview Button to the UI 
-    - e.g.: `snapper::preview_button(ui = '#ace',previewId = "previewImage")`
+    - e.g.: `snapper::preview_button(ui = '#NAME',previewId = "previewImage")`
   - Add a Div that is connected to Preview Button
     - e.g.: `snapper::snapper_div(id = "previewImage")`
   - Add a Download Button to download directly to a local path
-    - e.g.: `snapper::download_button(ui = '#ace')`
+    - e.g.: `snapper::download_button(ui = '#NAME')`
 
-## Verbose Example
+## Verbose Examples
 
-Add preview and download buttons to create `shinyAce` images to share online.
+Add preview and download buttons to create `ace` editor images to share online.
+
+<details><summary> script </summary>
 
 ```r
 library(shiny)
@@ -111,3 +113,34 @@ Different Mode:
 Different Theme:
 
 <img src = "inst/images/shinyAce_chrome.png" width='60%'>
+
+</details>
+
+Add preview button to app with `leaflets` passing arguments to `html2canvas` to render the layers.
+
+<details><summary>script</summary>
+
+```r
+library(shiny)
+library(leaflet)
+
+shiny::runGadget(
+ fluidPage(
+    leafletOutput('myMap'),
+    snapper::load_snapper(),
+    snapper::preview_button(ui = '#myMap',
+                            allowTaint = TRUE,
+                            useCORS = TRUE),
+    snapper::snapper_div()
+    ),
+  server = function(input, output) {
+    map = leaflet() %>% 
+      addTiles() %>% 
+      setView(-93.65, 42.0285, zoom = 17)
+    output$myMap = renderLeaflet(map)
+  },
+  viewer = shiny::browserViewer()
+)
+```
+
+</details>

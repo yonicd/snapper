@@ -9,14 +9,16 @@ preview_button(
   inputId = "btn-Preview-Image",
   label = "Preview",
   ui = "#html-content-holder",
-  previewId = "previewImage"
+  previewId = "previewImage",
+  ...
 )
 
 download_button(
   inputId = "btn-Convert-Html2Image",
   label = "Download",
   ui = "#html-content-holder",
-  filename = "canvas.png"
+  filename = "canvas.png",
+  ...
 )
 }
 \arguments{
@@ -30,6 +32,8 @@ of the target ui element to be captured. Default: '#html-content-holder'}
 
 \item{previewId}{character, The id that is mapped to the container that captures
 the canvas output. Default: 'previewImage'}
+
+\item{\dots}{settings to pass to html2canvas}
 
 \item{filename}{character, Local path to save the image. Default: 'canvas.png'}
 }
