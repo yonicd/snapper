@@ -83,7 +83,7 @@ shinyApp(ui = ui, server = server)
 
 ### App
 
-![](inst/images/shinyAce_body.png)
+![](inst/images/shinyAce.png)
 
 ### Saved Image
 
