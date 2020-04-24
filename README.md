@@ -88,18 +88,16 @@ shinyApp(ui = ui, server = server)
 
 Default: 
 
-![](inst/images/shinyAce.png){width='60%'}
+<img src = "inst/images/shinyAce.png" width='60%'>
 
 Saved Image:
 
-![](inst/images/shinyAce_snap.png){width='30%'}
-
+<img src = "inst/images/shinyAce_snap.png" width='30%'>
 
 Different Mode:
 
-![](inst/images/shinyAce_python.png){width='60%'}
+<img src = "inst/images/shinyAce_python.png" width='60%'>
 
 Different Theme:
 
-![](inst/images/shinyAce_chrome.png){width='60%'}
-
+<img src = "inst/images/shinyAce_chrome.png" width='60%'>
