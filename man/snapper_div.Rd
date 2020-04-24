@@ -39,17 +39,17 @@ sidebarLayout(
                value = 500),
 
    # add a download button for the side panel by id
-   snapper::download_button(contentId = 'side',
+   snapper::download_button(ui = '#side',
    label = 'Download Side Panel',
    filename = 'side_panel.png'),
 
    # add a preview button for the side panel by id
-   snapper::preview_button(contentId = 'side',
+   snapper::preview_button(ui = '#side',
    previewId = 'preview_side',
    label = 'Preview Side Panel'),
 
    # add a preview button for the main panel by id
-   snapper::preview_button(contentId = 'main',
+   snapper::preview_button(ui = '#main',
    previewId = 'preview_main',
    label = 'Preview Main Panel')
  ),

@@ -8,25 +8,28 @@
 preview_button(
   inputId = "btn-Preview-Image",
   label = "Preview",
-  contentId = "html-content-holder",
+  ui = "#html-content-holder",
   previewId = "previewImage"
 )
 
 download_button(
   inputId = "btn-Convert-Html2Image",
   label = "Download",
-  contentId = "html-content-holder",
+  ui = "#html-content-holder",
   filename = "canvas.png"
 )
 }
 \arguments{
-\item{inputId}{character, The input slot that will be used to access the value. Default: 'btn-Convert-Html2Image'}
+\item{inputId}{character, The input slot that will be used to access the value.
+Default: 'btn-Preview-Image'}
 
-\item{label}{character, The contents of the button. Default: 'Download'}
+\item{label}{character, The contents of the button. Default: 'Preview'}
 
-\item{contentId}{character, The input slot that is mapped to the content to be previewed. Default: 'html-content-holder'}
+\item{ui}{character, The \href{https://api.jquery.com/category/selectors/}{jQuery selector}
+of the target ui element to be captured. Default: '#html-content-holder'}
 
-\item{previewId}{character, The id that is mapped to the container that captures the canvas output. Default: 'previewImage'}
+\item{previewId}{character, The id that is mapped to the container that captures
+the canvas output. Default: 'previewImage'}
 
 \item{filename}{character, Local path to save the image. Default: 'canvas.png'}
 }
@@ -34,9 +37,8 @@ download_button(
 shiny.tag
 }
 \description{
-Buttons to populate \link[snapper:snapper_div]{snapper_div} or download to local file the canvas contents.
-
-Download the canvas as a png locally.
+Buttons to populate \link[snapper:snapper_div]{snapper_div} or
+download to local file the canvas contents.
 }
 \examples{
 
@@ -59,17 +61,17 @@ sidebarLayout(
                value = 500),
 
    # add a download button for the side panel by id
-   snapper::download_button(contentId = 'side',
+   snapper::download_button(ui = '#side',
    label = 'Download Side Panel',
    filename = 'side_panel.png'),
 
    # add a preview button for the side panel by id
-   snapper::preview_button(contentId = 'side',
+   snapper::preview_button(ui = '#side',
    previewId = 'preview_side',
    label = 'Preview Side Panel'),
 
    # add a preview button for the main panel by id
-   snapper::preview_button(contentId = 'main',
+   snapper::preview_button(ui = '#main',
    previewId = 'preview_main',
    label = 'Preview Main Panel')
  ),

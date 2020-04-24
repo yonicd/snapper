@@ -24,6 +24,8 @@ Add preview and download buttons to create `shinyAce` images to share online.
 ```r
 library(shiny)
 library(shinyAce)
+library(shinyjqui)
+
 options(shiny.launch.browser = TRUE)
 
 init <- "createData <- function(rows) {
@@ -57,7 +59,8 @@ server <- function(input, output, session) {
 ace <- aceEditor(
   outputId = "ace",
   selectionId = "selection",
-  value = init,
+  value = init, 
+  wordWrap = TRUE,
   placeholder = "Show a placeholder when the editor is empty ...")
 
 # define UI for application that demonstrates a simple Ace editor
@@ -72,9 +75,9 @@ ui <- pageWithSidebar(
                radioButtons("invisible", NULL, c("Hide invisibles" = FALSE, "Show invisibles" = TRUE), inline = TRUE),
                actionButton("reset", "Reset text"),
                actionButton("clear", "Clear text"),
-               snapper::preview_button(contentId = 'ace'),
-               snapper::download_button(contentId = 'ace')
-  ),mainPanel(ace, shiny::tags$h3('Preview'), snapper::snapper_div())
+               snapper::preview_button(ui = '#ace'),
+               snapper::download_button(ui = '#ace')
+  ),mainPanel(shinyjqui::jqui_resizable(ace, options = list(aspectRatio = FALSE)), shiny::tags$h3('Preview'), snapper::snapper_div())
 )
 
 # Return a Shiny app object
@@ -83,9 +86,20 @@ shinyApp(ui = ui, server = server)
 
 ### App
 
-![](inst/images/shinyAce.png)
+Default: 
 
-### Saved Image
+![](inst/images/shinyAce.png){width='60%'}
 
-![](inst/images/shinyAce_snap.png)
+Saved Image:
+
+![](inst/images/shinyAce_snap.png){width='30%'}
+
+
+Different Mode:
+
+![](inst/images/shinyAce_python.png){width='60%'}
+
+Different Theme:
+
+![](inst/images/shinyAce_chrome.png){width='60%'}
 

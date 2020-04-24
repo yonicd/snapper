@@ -1,9 +1,13 @@
 #' @title Snapper Buttons
-#' @description Buttons to populate [snapper_div][snapper::snapper_div] or download to local file the canvas contents.
-#' @param inputId character, The input slot that will be used to access the value. Default: 'btn-Preview-Image'
+#' @description Buttons to populate [snapper_div][snapper::snapper_div] or
+#' download to local file the canvas contents.
+#' @param inputId character, The input slot that will be used to access the value.
+#'  Default: 'btn-Preview-Image'
 #' @param label character, The contents of the button. Default: 'Preview'
-#' @param contentId character, The input slot that is mapped to the content to be previewed. Default: 'html-content-holder'
-#' @param previewId character, The id that is mapped to the container that captures the canvas output. Default: 'previewImage'
+#' @param ui character, The [jQuery selector](https://api.jquery.com/category/selectors/)
+#' of the target ui element to be captured. Default: '#html-content-holder'
+#' @param previewId character, The id that is mapped to the container that captures
+#' the canvas output. Default: 'previewImage'
 #' @param filename character, Local path to save the image. Default: 'canvas.png'
 #' @return shiny.tag
 #' @examples
@@ -28,17 +32,17 @@
 #'                value = 500),
 #'
 #'    # add a download button for the side panel by id
-#'    snapper::download_button(contentId = 'side',
+#'    snapper::download_button(ui = '#side',
 #'    label = 'Download Side Panel',
 #'    filename = 'side_panel.png'),
 #'
 #'    # add a preview button for the side panel by id
-#'    snapper::preview_button(contentId = 'side',
+#'    snapper::preview_button(ui = '#side',
 #'    previewId = 'preview_side',
 #'    label = 'Preview Side Panel'),
 #'
 #'    # add a preview button for the main panel by id
-#'    snapper::preview_button(contentId = 'main',
+#'    snapper::preview_button(ui = '#main',
 #'    previewId = 'preview_main',
 #'    label = 'Preview Main Panel')
 #'  ),
@@ -76,40 +80,34 @@
 #' @importFrom shiny actionButton
 preview_button <- function(inputId = 'btn-Preview-Image',
                            label = 'Preview',
-                           contentId = "html-content-holder",
+                           ui = "#html-content-holder",
                            previewId = 'previewImage'){
   shiny::actionButton(
     inputId = inputId,
     label = label,
     onclick = sprintf('(function () {
-    html2canvas($("#%s")[0]).then(function(canvas) {
+    html2canvas($("%s")[0]).then(function(canvas) {
       $("#%s").empty()
       $("#%s").append(canvas);
     });
-    })();',contentId,previewId,previewId)
+    })();',ui,previewId,previewId)
   )
 }
-
-#' @title Download Button
-#' @description Download the canvas as a png locally.
-#' @param inputId character, The input slot that will be used to access the value. Default: 'btn-Convert-Html2Image'
-#' @param label character, The contents of the button. Default: 'Download'
-#' @param contentId character, The input slot that is mapped to the content to be previewed. Default: 'html-content-holder'
 
 #' @rdname buttons
 #' @export
 #' @importFrom shiny actionButton
 download_button <- function(inputId = 'btn-Convert-Html2Image',
                             label = 'Download',
-                            contentId = "html-content-holder",
+                            ui = "#html-content-holder",
                             filename = 'canvas.png'){
   shiny::actionButton(
     inputId = inputId,
     label = label,
     onclick = sprintf('(function () {
-    html2canvas($("#%s")[0]).then(function(canvas) {
+    html2canvas($("%s")[0]).then(function(canvas) {
     saveAs(canvas.toDataURL(), "%s");
   });
-  })();',contentId,filename)
+  })();',ui,filename)
   )
 }
