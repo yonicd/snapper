@@ -79,6 +79,7 @@
 #' @seealso
 #' [actionButton][shiny::actionButton]
 #' @rdname buttons
+#' @family elements
 #' @export
 #' @importFrom shiny actionButton
 preview_button <- function(inputId = 'btn-Preview-Image',

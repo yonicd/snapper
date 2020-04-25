@@ -110,4 +110,8 @@ shinyApp(ui, server)
 }
 \seealso{
 \link[shiny:actionButton]{actionButton}
+
+Other elements: 
+\code{\link{snapper_div}()}
 }
+\concept{elements}

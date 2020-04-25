@@ -40,8 +40,9 @@
 #' @return json
 #' @details To find further information on the configurations that can be used
 #' please refer to [html2canvas](https://html2canvas.hertzen.com/documentation)
+#' @family config
 #' @importFrom utils modifyList
-#'@importFrom jsonlite toJSON
+#' @importFrom jsonlite toJSON
 #' @export
 config <- function(allowTaint,
                    backgroundColor,

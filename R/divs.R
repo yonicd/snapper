@@ -10,6 +10,7 @@
 #' @rdname snapper_div
 #' @export
 #' @importFrom shiny tags
+#' @family elements
 snapper_div <- function(id = "previewImage",...){
   shiny::tags$div(id = id,...)
 }

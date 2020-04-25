@@ -97,3 +97,4 @@ Customize configuration of the html2canvas call.
 To find further information on the configurations that can be used
 please refer to \href{https://html2canvas.hertzen.com/documentation}{html2canvas}
 }
+\concept{config}

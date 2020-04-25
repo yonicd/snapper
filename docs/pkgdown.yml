@@ -1,0 +1,8 @@
+pandoc: 2.9.2.1
+pkgdown: 1.5.1
+pkgdown_sha: ~
+articles:
+  basic: basic.html
+  htmlwidgets: htmlwidgets.html
+last_built: 2020-04-25T17:49Z
+

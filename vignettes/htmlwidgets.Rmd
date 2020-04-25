@@ -1,0 +1,118 @@
+---
+title: "Using with htmlwidgets"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using with htmlwidgets}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE
+)
+```
+
+```{r setup}
+library(snapper)
+library(shiny)
+library(leaflet)
+```
+
+`snapper` can be used to capture more complex elements in an app such as leaflet htmlwidgets.
+
+The user must set the correct `html2canvas` configuration:
+
+```{r}
+snapper::config(
+  allowTaint = TRUE,
+  useCORS = TRUE
+)
+```
+
+For more configurations see `snapper::config`.
+
+## Basic
+
+```{r}
+shiny::runGadget(
+  fluidPage(
+    leafletOutput('myMap'),
+    snapper::load_snapper(),
+    snapper::preview_button(
+      ui = '#myMap',
+      opts = snapper::config(
+        allowTaint = TRUE,
+        useCORS = TRUE)
+    ),
+    snapper::snapper_div()
+  ),
+  server = function(input, output) {
+    map = leaflet() %>%
+      addTiles() %>%
+      setView(-93.65, 42.0285, zoom = 17)
+    output$myMap = renderLeaflet(map)
+  },
+  viewer = shiny::browserViewer()
+)
+
+```
+
+## Advanced
+
+The configurations can also be dependent on reactive elements in the app. 
+
+In this examples the leaflet image is cropped as a function of the two sliderInput elements.
+
+
+```{r}
+
+shiny::runGadget(
+  fluidPage(
+    snapper::load_snapper(),
+    sidebarLayout(
+      sidebarPanel = sidebarPanel(
+        sliderInput(
+          inputId = 'x_slide',
+          label = 'Crop X',
+          min = 0,
+          max = 1200,
+          value = 555
+        ),
+        sliderInput(
+          inputId = 'y_slide',
+          label = 'Crop Y',
+          min = 0,
+          max = 400,
+          value = 0
+        ),
+        uiOutput('mybtn')
+      ),
+      mainPanel = mainPanel(
+        leafletOutput('myMap'),
+        snapper::snapper_div()
+      )
+    )),
+  server = function(input, output) {
+    output$mybtn <- renderUI({
+       snapper::preview_button(
+        ui = '#myMap',
+        opts = snapper::config(
+          allowTaint = TRUE,
+          useCORS = TRUE,
+          x = as.numeric(input$x_slide),
+          y = as.numeric(input$y_slide)
+          )
+      )
+    })
+    map = leaflet() %>%
+      addTiles() %>%
+      setView(-93.65, 42.0285, zoom = 17)
+    output$myMap = renderLeaflet(map)
+  },
+  viewer = shiny::browserViewer()
+)
+
+```

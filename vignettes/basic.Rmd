@@ -1,0 +1,136 @@
+---
+title: "Basic Usage"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Basic Usage}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE
+)
+```
+
+```{r setup}
+library(snapper)
+library(shiny)
+```
+
+`snapper` can be used in only UI part of the shiny app in its simplest form.
+
+## How to use
+
+  - Load to bindings to the UI using 
+    - `snapper::load_snapper()`
+  - Add a Preview Button to the UI 
+    - e.g.: `snapper::preview_button(ui = '#NAME',previewId = "previewImage")`
+    - Setting ui = 'body' you can take snaps of the entire app
+  - Add a Div that is connected to Preview Button
+    - e.g.: `snapper::snapper_div(id = "previewImage")`
+  - Add a Download Button to download directly to a local path
+    - e.g.: `snapper::download_button(ui = '#NAME')`
+  - Manipulate `html2cavnas` configuration settings
+    - `snapper::config()`
+
+```{r}
+
+# Define UI
+ui <- fluidPage(id = 'page',
+
+# load snapper into the app
+load_snapper(),
+
+titlePanel("Hello Shiny!"),
+
+sidebarLayout(
+
+ sidebarPanel(id = 'side', # add id to side panel
+   sliderInput("obs",
+               "Number of observations:",
+               min = 0,
+               max = 1000,
+               value = 500),
+
+   # add a download button for the side panel by id
+   snapper::download_button(ui = '#side',
+   label = 'Download Side Panel',
+   filename = 'side_panel.png'),
+
+   # add a preview button for the side panel by id
+   snapper::preview_button(ui = '#side',
+   previewId = 'preview_side',
+   label = 'Preview Side Panel'),
+
+   # add a preview button for the main panel by id
+   snapper::preview_button(ui = '#main',
+   previewId = 'preview_main',
+   label = 'Preview Main Panel')
+ ),
+
+ # Show a plot of the generated distribution
+ mainPanel(id = 'main', # add id to main panel
+   plotOutput("distPlot"),
+
+   # create a div that will display the content created by preview_side
+   shiny::tags$h3('Preview Side Panel'),
+   snapper::snapper_div(id = 'preview_side'),
+
+   # create a div that will display the content created by preview_main
+   shiny::tags$h3('Preview Main Panel'),
+   snapper::snapper_div(id = 'preview_main')
+ )
+  )
+)
+
+```
+
+# Server logic
+ 
+```{r}
+
+server <- function(input, output) {
+  output$distPlot <- renderPlot({
+    hist(rnorm(input$obs))
+  })
+}
+
+```
+
+# Complete app with UI and server components
+ 
+```{r}
+
+shinyApp(ui, server)
+
+```
+
+## Images Snapped during app run
+
+
+Default: 
+
+```{r, echo = FALSE,out.width='50%',eval = TRUE}
+knitr::include_graphics('../man/figures/shinyAce.png')
+```
+
+Saved Image:
+
+```{r, echo = FALSE,out.width='30%',eval = TRUE}
+knitr::include_graphics('../man/figures/shinyAce_snap.png')
+```
+
+Different Mode:
+
+```{r, echo = FALSE,out.width='50%',eval = TRUE}
+knitr::include_graphics('../man/figures/shinyAce_python.png')
+```
+
+Different Theme:
+
+```{r, echo = FALSE,out.width='50%',eval = TRUE}
+knitr::include_graphics('../man/figures/shinyAce_chrome.png')
+```

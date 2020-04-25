@@ -84,3 +84,4 @@ shinyApp(ui, server)
 \seealso{
 \link[shiny:tag]{tag}, \link[shiny:builder]{builder}
 }
+\concept{load}

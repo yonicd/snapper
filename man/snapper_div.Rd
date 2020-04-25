@@ -82,4 +82,8 @@ shinyApp(ui, server)
 }
 \seealso{
 \link[shiny:builder]{builder}
+
+Other elements: 
+\code{\link{preview_button}()}
 }
+\concept{elements}

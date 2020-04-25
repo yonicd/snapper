@@ -1,0 +1,36 @@
+destination: docs
+
+title: snapper
+
+development:
+  mode: auto
+
+navbar:
+  structure:
+    left:  [home, reference, articleindex, news]
+    right: [github, twitter]
+  components:
+    articles: ~
+    articleindex:
+      text: Articles
+      href: articles/index.html
+    twitter:
+      icon: fa-lg fa-twitter
+      href: http://twitter.com/yoniceedee
+
+reference:
+  - title: 'Bindings'
+    contents:
+      - has_concept("load")
+  - title: 'Elements'
+    contents:
+      - has_concept("elements")
+  - title: 'Configuration'
+    contents:
+      - has_concept("config")
+
+articles:
+  - title: "Usage"
+    contents:
+      - basic
+      - htmlwidgets

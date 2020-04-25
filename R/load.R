@@ -8,6 +8,7 @@
 #' @seealso
 #'  [tag][shiny::tag], [builder][shiny::builder]
 #' @rdname load_snapper
+#' @family load
 #' @export
 #' @importFrom shiny tagList tags
 load_snapper <- function(html2canvas = 'https://html2canvas.hertzen.com/dist/html2canvas.js'){
