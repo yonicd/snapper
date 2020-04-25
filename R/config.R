@@ -113,13 +113,13 @@ default_class <- list(
   'proxy' = c('character','NULL'),
   'removeContainer' = 'logical',
   'useCORS' = 'logical',
-  'scale' = 'character',
-  'width' = 'character',
-  'height' = 'character',
-  'x' = 'character',
-  'y' = 'character',
-  'scrollX' = 'character',
-  'scrollY' = 'character',
-  'windowWidth' = 'character',
-  'windowHeight' = 'character'
+  'scale' = c('character','numeric'),
+  'width' = c('character','numeric'),
+  'height' = c('character','numeric'),
+  'x' = c('character','numeric'),
+  'y' = c('character','numeric'),
+  'scrollX' = c('character','numeric'),
+  'scrollY' = c('character','numeric'),
+  'windowWidth' = c('character','numeric'),
+  'windowHeight' = c('character','numeric')
 )

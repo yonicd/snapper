@@ -1,0 +1,95 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# snapper
+snap images of html objects in Shiny apps using canvas2html JQuery library
+
+## Installation
+
+```r
+remotes::install_github('yonicd/snapper')
+```
+
+## Where it can be useful
+
+  - seleniumless shiny app testing
+    - Take a snap of any element in the page using `JavaScript` strings
+  - offline script image sharing (a la carbon)
+    - Implemented in  [carbonace](https://github.com/yonicd/carbonace)
+
+## How to use
+
+  - Load to bindings to the UI using 
+    - `snapper::load_snapper()`
+  - Add a Preview Button to the UI 
+    - e.g.: `snapper::preview_button(ui = '#NAME',previewId = "previewImage")`
+  - Add a Div that is connected to Preview Button
+    - e.g.: `snapper::snapper_div(id = "previewImage")`
+  - Add a Download Button to download directly to a local path
+    - e.g.: `snapper::download_button(ui = '#NAME')`
+
+## Verbose Examples
+
+
+
+```{r, include=FALSE}
+library(details)
+```
+
+### Ace editor
+
+Adding preview and download buttons to create ace editor images to share online.
+
+```{details,details.summary = 'Script', echo = FALSE}
+system.file('examples/basic.R',package = 'snapper')
+```
+
+<details><summary> Example Outputs </summary>
+
+Default: 
+
+```{r, echo = FALSE,out.width='50%'}
+knitr::include_graphics(system.file('images/shinyAce.png',package = 'snapper'))
+```
+
+Saved Image:
+
+```{r, echo = FALSE,out.width='30%'}
+knitr::include_graphics(system.file('images/shinyAce_snap.png',package = 'snapper'))
+```
+
+Different Mode:
+
+```{r, echo = FALSE,out.width='50%'}
+knitr::include_graphics(system.file('images/shinyAce_python.png',package = 'snapper'))
+```
+
+Different Theme:
+
+```{r, echo = FALSE,out.width='50%'}
+knitr::include_graphics(system.file('images/shinyAce_chrome.png',package = 'snapper'))
+```
+
+</details>
+<br>
+
+### Htmlwidgets
+
+```{details,details.summary = 'Leaflets', echo = FALSE}
+system.file('examples/leaflet_basic.R',package = 'snapper')
+```
+
+```{details,details.summary = 'Leaflets with Reactive Cropping', echo = FALSE}
+system.file('examples/leaflet_crop.R',package = 'snapper')
+```
