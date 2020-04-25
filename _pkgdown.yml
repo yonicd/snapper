@@ -7,16 +7,25 @@ development:
 
 navbar:
   structure:
-    left:  [home, reference, articleindex, news]
-    right: [github, twitter]
+    left:
+    - home
+    - reference
+    - articleindex
+    - news
+    right:
+    - github
+    - twitter
   components:
     articles: ~
     articleindex:
       text: Articles
       href: articles/index.html
-    twitter:
-      icon: fa-lg fa-twitter
-      href: http://twitter.com/yoniceedee
+  type: inverse
+  right:
+  - icon: fa-github fa-lg
+    href: https://github.com/yonicd/snapper
+  - icon: fa-lg fa-twitter
+    href: http://twitter.com/yoniceedee
 
 reference:
   - title: 'Bindings'
