@@ -10,7 +10,7 @@ preview_button(
   label = "Preview",
   ui = "#html-content-holder",
   previewId = "previewImage",
-  ...
+  opts = config()
 )
 
 download_button(
@@ -18,7 +18,7 @@ download_button(
   label = "Download",
   ui = "#html-content-holder",
   filename = "canvas.png",
-  ...
+  opts = config()
 )
 }
 \arguments{
@@ -33,7 +33,9 @@ of the target ui element to be captured. Default: '#html-content-holder'}
 \item{previewId}{character, The id that is mapped to the container that captures
 the canvas output. Default: 'previewImage'}
 
-\item{\dots}{settings to pass to html2canvas}
+\item{opts}{configuration settings to pass to
+\href{https://html2canvas.hertzen.com/configuration}{html2canvas}.
+@details Use \link{config} to define the configuration options}
 
 \item{filename}{character, Local path to save the image. Default: 'canvas.png'}
 }

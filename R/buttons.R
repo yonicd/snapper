@@ -9,7 +9,9 @@
 #' @param previewId character, The id that is mapped to the container that captures
 #' the canvas output. Default: 'previewImage'
 #' @param filename character, Local path to save the image. Default: 'canvas.png'
-#' @param \dots settings to pass to html2canvas
+#' @param opts configuration settings to pass to
+#'   [html2canvas](https://html2canvas.hertzen.com/configuration).
+#'  @details Use [config][config] to define the configuration options
 #' @return shiny.tag
 #' @examples
 #'
@@ -83,15 +85,17 @@ preview_button <- function(inputId = 'btn-Preview-Image',
                            label = 'Preview',
                            ui = "#html-content-holder",
                            previewId = 'previewImage',
-                           ...){
+                           opts = config()){
 
   shiny::actionButton(
     inputId = inputId,
     label = label,
-    onclick = build_preview_call(
-      list(...),
-      ui = ui,
-      previewId = previewId)
+    onclick = build_call(
+      type = 'preview',
+      arg = previewId,
+      opts = opts,
+      ui = ui
+    )
   )
 }
 
@@ -102,47 +106,15 @@ download_button <- function(inputId = 'btn-Convert-Html2Image',
                             label = 'Download',
                             ui = "#html-content-holder",
                             filename = 'canvas.png',
-                            ...){
+                            opts = config()){
   shiny::actionButton(
     inputId = inputId,
     label = label,
-    onclick = build_download_call(list(...),ui,filename)
+    onclick = build_call(
+      type = 'download',
+      arg = filename,
+      opts = opts,
+      ui = ui
+    )
   )
-}
-
-#'@importFrom jsonlite toJSON
-build_preview_call <- function(opts,ui,previewId){
-
-  canvas_opts <- ''
-
-  if(length(opts)>0){
-    canvas_opts <- jsonlite::toJSON(opts,auto_unbox = TRUE)
-    canvas_opts <- gsub('["]','',canvas_opts)
-    canvas_opts <- sprintf(',%s',canvas_opts)
-  }
-
-  sprintf('(function () {
-    html2canvas($("%s")[0]%s).then(canvas=>{
-      $("#%s").empty()
-      $("#%s").append(canvas);
-    });
-    })();',ui,canvas_opts,previewId,previewId)
-}
-
-#'@importFrom jsonlite toJSON
-build_download_call <- function(opts,ui,filename){
-
-  canvas_opts <- ''
-
-  if(length(opts)>0){
-    canvas_opts <- jsonlite::toJSON(opts,auto_unbox = TRUE)
-    canvas_opts <- gsub('["]','',canvas_opts)
-    canvas_opts <- sprintf(',%s',canvas_opts)
-  }
-
-  sprintf('(function () {
-    html2canvas($("%s")[0]%s).then(canvas=>{
-      saveAs(canvas.toDataURL(), "%s");
-    });
-    })();',ui,canvas_opts,filename)
 }
