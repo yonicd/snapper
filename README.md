@@ -128,9 +128,12 @@ shiny::runGadget(
  fluidPage(
     leafletOutput('myMap'),
     snapper::load_snapper(),
-    snapper::preview_button(ui = '#myMap',
-                            allowTaint = TRUE,
-                            useCORS = TRUE),
+    snapper::preview_button(
+      ui = '#myMap',
+      opts = snapper::config(
+        allowTaint = TRUE,
+        useCORS = TRUE)
+    ),
     snapper::snapper_div()
     ),
   server = function(input, output) {
