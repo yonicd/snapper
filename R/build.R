@@ -12,10 +12,16 @@ call_contents <- function(type = c('preview','download'),arg){
 
   switch(type,
          'preview' = {
-           sprintf('$("#%s").empty();\n$("#%s").append(canvas);',arg,arg)
+           sprintf('var img = document.createElement("img");
+                    img.src = canvas.toDataURL("png");
+                    img.width = parseInt(canvas.style.width);
+                    img.height = parseInt(canvas.style.height);
+                    $("#%s").empty();
+                    $("#%s").append(img);',
+                   arg,arg)
          },
          'download' = {
-           sprintf('saveAs(canvas.toDataURL(), "%s");',arg)
+           sprintf('saveAs(canvas.toDataURL("png"), "%s");',arg)
          })
 
 }
