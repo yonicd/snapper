@@ -2,22 +2,32 @@
 % Please edit documentation in R/load.R
 \name{load_snapper}
 \alias{load_snapper}
-\title{Load snapper JS libraries in ShinyApp}
+\title{Attach snapper dependencies to the Shiny App}
 \usage{
 load_snapper(
-  html2canvas = "https://html2canvas.hertzen.com/dist/html2canvas.js"
+  html2canvas = "https://html2canvas.hertzen.com/dist/html2canvas.min.js",
+  jquery = "https://code.jquery.com/jquery-3.5.0.min.js"
 )
 }
 \arguments{
 \item{html2canvas}{character, url path to html2canvas library.
 Default: 'https://html2canvas.hertzen.com/dist/html2canvas.js'}
+
+\item{jquery}{character, url path to jQuery library.
+Default: 'https://code.jquery.com/jquery-3.5.0.min.js'}
 }
 \value{
 shiny.tag.list
 }
 \description{
-Load html2canvas jquery library and download script
-in Shiny App environment.
+Attach html2canvas and jQuery javascript libraries and
+download script to the Shiny App environment.
+}
+\details{
+If your app needs to work with clients that won't be able to connect to the
+wider internet, you'll need to download the javascript files,
+put it in an app subdirectory (say, html2canvas),
+and point to the arguments to the their respective paths.
 }
 \examples{
 
