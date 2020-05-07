@@ -2,6 +2,7 @@
 % Please edit documentation in R/buttons.R
 \name{preview_button}
 \alias{preview_button}
+\alias{preview_link}
 \alias{download_button}
 \alias{download_link}
 \title{Snapper Buttons}
@@ -12,6 +13,15 @@ preview_button(
   ui = "#html-content-holder",
   previewId = "previewImage",
   opts = config()
+)
+
+preview_link(
+  inputId = "btn-Preview-Image",
+  label = "Preview",
+  ui = "#html-content-holder",
+  previewId = "previewImage",
+  opts = config(),
+  icon = "camera"
 )
 
 download_button(
