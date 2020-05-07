@@ -73,7 +73,7 @@ download to local file the canvas contents." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">snapper</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4</span>
       </span>
     </div>
 
@@ -136,12 +136,30 @@ download to local file the canvas contents.</p>
   <span class='kw'>opts</span> <span class='kw'>=</span> <span class='fu'><a href='config.html'>config</a></span>()
 )
 
+<span class='fu'>preview_link</span>(
+  <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"btn-Preview-Image"</span>,
+  <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Preview"</span>,
+  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='st'>"#html-content-holder"</span>,
+  <span class='kw'>previewId</span> <span class='kw'>=</span> <span class='st'>"previewImage"</span>,
+  <span class='kw'>opts</span> <span class='kw'>=</span> <span class='fu'><a href='config.html'>config</a></span>(),
+  <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"camera"</span>
+)
+
 <span class='fu'>download_button</span>(
   <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"btn-Convert-Html2Image"</span>,
   <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Download"</span>,
   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='st'>"#html-content-holder"</span>,
   <span class='kw'>filename</span> <span class='kw'>=</span> <span class='st'>"canvas.png"</span>,
   <span class='kw'>opts</span> <span class='kw'>=</span> <span class='fu'><a href='config.html'>config</a></span>()
+)
+
+<span class='fu'>download_link</span>(
+  <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"btn-Convert-Html2Image"</span>,
+  <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='st'>"#html-content-holder"</span>,
+  <span class='kw'>filename</span> <span class='kw'>=</span> <span class='st'>"canvas.png"</span>,
+  <span class='kw'>opts</span> <span class='kw'>=</span> <span class='fu'><a href='config.html'>config</a></span>(),
+  <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"camera"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>

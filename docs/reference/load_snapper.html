@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Load snapper JS libraries in ShinyApp — load_snapper • snapper</title>
+<title>Attach snapper dependencies to the Shiny App — load_snapper • snapper</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,9 @@
 
 
 
-<meta property="og:title" content="Load snapper JS libraries in ShinyApp — load_snapper" />
-<meta property="og:description" content="Load html2canvas jquery library and download script
-in Shiny App environment." />
+<meta property="og:title" content="Attach snapper dependencies to the Shiny App — load_snapper" />
+<meta property="og:description" content="Attach html2canvas and jQuery javascript libraries and
+download script to the Shiny App environment." />
 
 
 
@@ -73,7 +73,7 @@ in Shiny App environment." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">snapper</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4</span>
       </span>
     </div>
 
@@ -118,18 +118,19 @@ in Shiny App environment." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Load snapper JS libraries in ShinyApp</h1>
+    <h1>Attach snapper dependencies to the Shiny App</h1>
     
     <div class="hidden name"><code>load_snapper.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Load html2canvas jquery library and download script
-in Shiny App environment.</p>
+    <p>Attach html2canvas and jQuery javascript libraries and
+download script to the Shiny App environment.</p>
     </div>
 
     <pre class="usage"><span class='fu'>load_snapper</span>(
-  <span class='kw'>html2canvas</span> <span class='kw'>=</span> <span class='st'>"https://html2canvas.hertzen.com/dist/html2canvas.js"</span>
+  <span class='kw'>html2canvas</span> <span class='kw'>=</span> <span class='st'>"https://html2canvas.hertzen.com/dist/html2canvas.min.js"</span>,
+  <span class='kw'>jquery</span> <span class='kw'>=</span> <span class='st'>"https://code.jquery.com/jquery-3.5.0.min.js"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -140,11 +141,22 @@ in Shiny App environment.</p>
       <td><p>character, url path to html2canvas library.
 Default: 'https://html2canvas.hertzen.com/dist/html2canvas.js'</p></td>
     </tr>
+    <tr>
+      <th>jquery</th>
+      <td><p>character, url path to jQuery library.
+Default: 'https://code.jquery.com/jquery-3.5.0.min.js'</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>shiny.tag.list</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>If your app needs to work with clients that won't be able to connect to the
+wider internet, you'll need to download the javascript files,
+put it in an app subdirectory (say, html2canvas),
+and point to the arguments to the their respective paths.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tag</a>, <a href='https://rdrr.io/pkg/shiny/man/builder.html'>builder</a></p></div>
