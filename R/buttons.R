@@ -102,6 +102,30 @@ preview_button <- function(inputId = 'btn-Preview-Image',
 
 #' @rdname buttons
 #' @export
+#' @importFrom shiny actionLink icon
+preview_link <- function(inputId = 'btn-Preview-Image',
+                         label = 'Preview',
+                         ui = "#html-content-holder",
+                         previewId = 'previewImage',
+                         opts = config(),
+                         icon = "camera"){
+
+  shiny::actionLink(
+    inputId = inputId,
+    label = label,
+    icon = shiny::icon(icon),
+    onclick = build_call(
+      type = 'preview',
+      arg = previewId,
+      opts = opts,
+      ui = ui
+    )
+  )
+}
+
+
+#' @rdname buttons
+#' @export
 #' @importFrom shiny actionButton
 download_button <- function(inputId = 'btn-Convert-Html2Image',
                             label = 'Download',
@@ -119,3 +143,26 @@ download_button <- function(inputId = 'btn-Convert-Html2Image',
     )
   )
 }
+
+#' @rdname buttons
+#' @export
+#' @importFrom shiny actionLink icon
+download_link <- function(inputId = 'btn-Convert-Html2Image',
+                          label = '',
+                          ui = "#html-content-holder",
+                          filename = 'canvas.png',
+                          opts = config(),
+                          icon = "camera"){
+  shiny::actionLink(
+    inputId = inputId,
+    label = label,
+    icon = shiny::icon(icon),
+    onclick = build_call(
+      type = 'download',
+      arg = filename,
+      opts = opts,
+      ui = ui
+    )
+  )
+}
+
