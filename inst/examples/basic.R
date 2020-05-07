@@ -1,4 +1,5 @@
 library(shiny)
+library(snapper)
 options(device.ask.default = FALSE)
 # Define UI
 ui <- fluidPage(id = 'page',
@@ -35,6 +36,13 @@ sidebarLayout(
 
  # Show a plot of the generated distribution
  mainPanel(id = 'main', # add id to main panel
+
+   # add a download link for the main panel
+   snapper::download_link(
+      ui = '#main',
+      label = '',
+      filename = 'main_panel.png'
+   ),
    plotOutput("distPlot"),
 
    # create a div that will display the content created by preview_side

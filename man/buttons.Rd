@@ -3,6 +3,7 @@
 \name{preview_button}
 \alias{preview_button}
 \alias{download_button}
+\alias{download_link}
 \title{Snapper Buttons}
 \usage{
 preview_button(
@@ -19,6 +20,15 @@ download_button(
   ui = "#html-content-holder",
   filename = "canvas.png",
   opts = config()
+)
+
+download_link(
+  inputId = "btn-Convert-Html2Image",
+  label = "",
+  ui = "#html-content-holder",
+  filename = "canvas.png",
+  opts = config(),
+  icon = "camera"
 )
 }
 \arguments{
