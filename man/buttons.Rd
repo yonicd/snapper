@@ -54,8 +54,9 @@ of the target ui element to be captured. Default: '#html-content-holder'}
 the canvas output. Default: 'previewImage'}
 
 \item{opts}{configuration settings to pass to
-\href{https://html2canvas.hertzen.com/configuration}{html2canvas}.
-@details Use \link{config} to define the configuration options}
+\href{https://html2canvas.hertzen.com/configuration}{html2canvas}.}
+
+\item{icon}{icon to pass use for in the link objects, Default: 'camera'}
 
 \item{filename}{character, Local path to save the image. Default: 'canvas.png'}
 }
@@ -65,6 +66,9 @@ shiny.tag
 \description{
 Buttons to populate \link[snapper:snapper_div]{snapper_div} or
 download to local file the canvas contents.
+}
+\details{
+Use \link{config} to define the configuration options
 }
 \examples{
 

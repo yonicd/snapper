@@ -11,7 +11,8 @@
 #' @param filename character, Local path to save the image. Default: 'canvas.png'
 #' @param opts configuration settings to pass to
 #'   [html2canvas](https://html2canvas.hertzen.com/configuration).
-#'  @details Use [config][config] to define the configuration options
+#' @param icon icon to pass use for in the link objects, Default: 'camera'
+#' @details Use [config][config] to define the configuration options
 #' @return shiny.tag
 #' @examples
 #'

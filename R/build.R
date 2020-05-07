@@ -4,7 +4,7 @@ build_call <- function(type,arg,opts,ui){
     opts <- sprintf(',%s',opts)
   }
 
-  sprintf(cavnas_template, ui, opts, call_contents(type,arg))
+  sprintf(canvas_template, ui, opts, call_contents(type,arg))
 
 }
 
@@ -26,7 +26,7 @@ call_contents <- function(type = c('preview','download'),arg){
 
 }
 
-cavnas_template <- '(function () {
+canvas_template <- '(function () {
     html2canvas($("%s")[0]%s).then(canvas=>{
       %s
     });
