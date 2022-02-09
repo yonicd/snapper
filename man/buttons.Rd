@@ -5,6 +5,8 @@
 \alias{preview_link}
 \alias{download_button}
 \alias{download_link}
+\alias{save_button}
+\alias{save_link}
 \title{Snapper Buttons}
 \usage{
 preview_button(
@@ -40,6 +42,25 @@ download_link(
   opts = config(),
   icon = "camera"
 )
+
+save_button(
+  inputId = "btn-Save-Html2Image",
+  label = "Save",
+  ui = "#html-content-holder",
+  filename = "canvas.png",
+  opts = config(),
+  save_dir = getwd()
+)
+
+save_link(
+  inputId = "btn-Save-Html2Image",
+  label = "Save",
+  ui = "#html-content-holder",
+  filename = "canvas.png",
+  opts = config(),
+  save_dir = getwd(),
+  icon = "camera"
+)
 }
 \arguments{
 \item{inputId}{character, The input slot that will be used to access the value.
@@ -59,13 +80,18 @@ the canvas output. Default: 'previewImage'}
 \item{icon}{icon to pass use for in the link objects, Default: 'camera'}
 
 \item{filename}{character, Local path to save the image. Default: 'canvas.png'}
+
+\item{save_dir}{directory on the server where the image should be saved, relative
+to the shiny apps' working directory. If saving the image is successful,
+\code{input$snap} will contain the full path to the image. If not,
+\code{input$snap} will contain an empty string (\code{""}).}
 }
 \value{
 shiny.tag
 }
 \description{
-Buttons to populate \link[snapper:snapper_div]{snapper_div} or
-download to local file the canvas contents.
+Buttons to populate \link[=snapper_div]{snapper_div},
+download to local file, or save to the server the canvas contents.
 }
 \details{
 Use \link{config} to define the configuration options
@@ -92,18 +118,22 @@ sidebarLayout(
 
    # add a download button for the side panel by id
    snapper::download_button(ui = '#side',
-   label = 'Download Side Panel',
+   label = 'Download Side',
    filename = 'side_panel.png'),
 
    # add a preview button for the side panel by id
    snapper::preview_button(ui = '#side',
    previewId = 'preview_side',
-   label = 'Preview Side Panel'),
+   label = 'Preview Side'),
 
    # add a preview button for the main panel by id
    snapper::preview_button(ui = '#main',
    previewId = 'preview_main',
-   label = 'Preview Main Panel')
+   label = 'Preview Main'),
+
+   # add a save button to save the side panel on the server
+   snapper::save_button(ui = '#side',
+   label = 'Save Side')
  ),
 
  # Show a plot of the generated distribution
