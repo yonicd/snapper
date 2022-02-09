@@ -1,14 +1,14 @@
-build_call <- function(type,arg,opts,ui){
+build_call <- function(type,arg,opts,ui, ...){
 
   if(nzchar(opts)){
     opts <- sprintf(',%s',opts)
   }
 
-  sprintf(canvas_template, ui, opts, call_contents(type,arg))
+  sprintf(canvas_template, ui, opts, call_contents(type,arg, ...))
 
 }
 
-call_contents <- function(type = c('preview','download'),arg){
+call_contents <- function(type = c('preview','download'),arg, save_dir){
 
   switch(type,
          'preview' = {
@@ -22,6 +22,15 @@ call_contents <- function(type = c('preview','download'),arg){
          },
          'download' = {
            sprintf('saveAs(canvas.toDataURL("png"), "%s");',arg)
+         },
+         'save' = {
+           sprintf('
+           var img = canvas.toDataURL();
+           Shiny.setInputValue(
+             `snap:snapper`,
+             { image: img, filename : "%s", dir : "%s" },
+             { priority : "event" }
+           );', arg, URLencode(save_dir))
          })
 
 }

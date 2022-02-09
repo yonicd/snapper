@@ -1,6 +1,6 @@
 #' @title Snapper Buttons
-#' @description Buttons to populate [snapper_div][snapper::snapper_div] or
-#' download to local file the canvas contents.
+#' @description Buttons to populate [snapper_div][snapper::snapper_div],
+#' download to local file, or save to the server the canvas contents.
 #' @param inputId character, The input slot that will be used to access the value.
 #'  Default: 'btn-Preview-Image'
 #' @param label character, The contents of the button. Default: 'Preview'
@@ -12,6 +12,10 @@
 #' @param opts configuration settings to pass to
 #'   [html2canvas](https://html2canvas.hertzen.com/configuration).
 #' @param icon icon to pass use for in the link objects, Default: 'camera'
+#' @param save_dir directory on the server where the image should be saved, relative
+#' to the shiny app's working directory. If saving the image is successful,
+#' `input$snap` will contain the full path to the image. If not,
+#' `input$snap` will contain an empty string (`""`).
 #' @details Use [config][config] to define the configuration options
 #' @return shiny.tag
 #' @examples
@@ -37,18 +41,22 @@
 #'
 #'    # add a download button for the side panel by id
 #'    snapper::download_button(ui = '#side',
-#'    label = 'Download Side Panel',
+#'    label = 'Download Side',
 #'    filename = 'side_panel.png'),
 #'
 #'    # add a preview button for the side panel by id
 #'    snapper::preview_button(ui = '#side',
 #'    previewId = 'preview_side',
-#'    label = 'Preview Side Panel'),
+#'    label = 'Preview Side'),
 #'
 #'    # add a preview button for the main panel by id
 #'    snapper::preview_button(ui = '#main',
 #'    previewId = 'preview_main',
-#'    label = 'Preview Main Panel')
+#'    label = 'Preview Main'),
+#'
+#'    # add a save button to save the side panel on the server
+#'    snapper::save_button(ui = '#side',
+#'    label = 'Save Side')
 #'  ),
 #'
 #'  # Show a plot of the generated distribution
@@ -167,3 +175,48 @@ download_link <- function(inputId = 'btn-Convert-Html2Image',
   )
 }
 
+#' @rdname buttons
+#' @export
+#' @importFrom shiny actionButton
+save_button <- function(inputId = 'btn-Save-Html2Image',
+                        label = 'Save',
+                        ui = "#html-content-holder",
+                        filename = 'canvas.png',
+                        opts = config(),
+                        save_dir = getwd()){
+  shiny::actionButton(
+    inputId = inputId,
+    label = label,
+    onclick = build_call(
+      type = 'save',
+      arg = filename,
+      opts = opts,
+      ui = ui,
+      save_dir = save_dir
+    )
+  )
+}
+
+#' @rdname buttons
+#' @export
+#' @importFrom shiny actionButton
+save_link <- function(inputId = 'btn-Save-Html2Image',
+                      label = 'Save',
+                      ui = "#html-content-holder",
+                      filename = 'canvas.png',
+                      opts = config(),
+                      save_dir = getwd(),
+                      icon = "camera"){
+  shiny::actionLink(
+    inputId = inputId,
+    label = label,
+    icon = shiny::icon(icon),
+    onclick = build_call(
+      type = 'save',
+      arg = filename,
+      opts = opts,
+      ui = ui,
+      save_dir = save_dir
+    )
+  )
+}

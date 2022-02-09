@@ -16,7 +16,7 @@ shiny.tag
 }
 \description{
 div object to capture
-\link[snapper:preview_button]{preview_button} outputs.
+\link[=preview_button]{preview_button} outputs.
 }
 \examples{
 
@@ -40,18 +40,22 @@ sidebarLayout(
 
    # add a download button for the side panel by id
    snapper::download_button(ui = '#side',
-   label = 'Download Side Panel',
+   label = 'Download Side',
    filename = 'side_panel.png'),
 
    # add a preview button for the side panel by id
    snapper::preview_button(ui = '#side',
    previewId = 'preview_side',
-   label = 'Preview Side Panel'),
+   label = 'Preview Side'),
 
    # add a preview button for the main panel by id
    snapper::preview_button(ui = '#main',
    previewId = 'preview_main',
-   label = 'Preview Main Panel')
+   label = 'Preview Main'),
+
+   # add a save button to save the side panel on the server
+   snapper::save_button(ui = '#side',
+   label = 'Save Side')
  ),
 
  # Show a plot of the generated distribution
