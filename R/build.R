@@ -8,7 +8,7 @@ build_call <- function(type,arg,opts,ui, ...){
 
 }
 
-call_contents <- function(type = c('preview','download'),arg, save_dir){
+call_contents <- function(type = c('preview','download'),arg, save_dir, inputId){
 
   switch(type,
          'preview' = {
@@ -27,10 +27,10 @@ call_contents <- function(type = c('preview','download'),arg, save_dir){
            sprintf('
            var img = canvas.toDataURL();
            Shiny.setInputValue(
-             `snap:snapper`,
+             `%s_snap:snapper`,
              { image: img, filename : "%s", dir : "%s" },
              { priority : "event" }
-           );', arg, URLencode(save_dir))
+           );', inputId, arg, URLencode(save_dir))
          })
 
 }

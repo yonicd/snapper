@@ -14,8 +14,8 @@
 #' @param icon icon to pass use for in the link objects, Default: 'camera'
 #' @param save_dir directory on the server where the image should be saved, relative
 #' to the shiny app's working directory. If saving the image is successful,
-#' `input$snap` will contain the full path to the image. If not,
-#' `input$snap` will contain an empty string (`""`).
+#' `input$[inputId]_snap` will contain the full path to the image. If not,
+#' `input$[inputId]_snap` will contain an empty string (`""`).
 #' @details Use [config][config] to define the configuration options
 #' @return shiny.tag
 #' @examples
@@ -192,7 +192,8 @@ save_button <- function(inputId = 'btn-Save-Html2Image',
       arg = filename,
       opts = opts,
       ui = ui,
-      save_dir = save_dir
+      save_dir = save_dir,
+      inputId = inputId
     )
   )
 }
@@ -216,7 +217,8 @@ save_link <- function(inputId = 'btn-Save-Html2Image',
       arg = filename,
       opts = opts,
       ui = ui,
-      save_dir = save_dir
+      save_dir = save_dir,
+      inputId = inputId
     )
   )
 }
